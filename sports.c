@@ -5,7 +5,7 @@ int main() {
     
     // this continues to prompt for a score until it is 0 or 1, stopping our while loop.
     while (1) {
-        printf("Enter the NFL score (enter 0 or 1 to stop): "); 
+        printf("Enter the NFL score ( 0 or 1 to stop): "); 
         scanf("%d", &score); // saves the score to our score variable.
         
         if (score <= 1) { // breaks the program if we get something less than or 1.
@@ -17,11 +17,11 @@ int main() {
         
         // nested for loops in order to generate all the combinations.
       for (int td = 0; td * 6 <= score; td++) {
-            for (int fg = 0; fg * 3 <= score - td * 6; fg++) {
-                for (int safety = 0; safety * 2 <= score - td * 6 - fg * 3; safety++) {
-                    int remaining_score = score - td * 6 - fg * 3 - safety * 2;
-                    
-                    if (remaining_score == 0) {
+            for (int fg = 0; fg * 3 <= score - td * 6; fg++) { // beginning i tried to just simply do every single one with a for loop, and for some reason it was finding way less than all the possibilites. 
+                for (int safety = 0; safety * 2 <= score - td * 6 - fg * 3; safety++) { // eventually i googled to try to find out why, and eventually i was here, inputting all these mathematical possibilities for each remaining possibility of score.
+                    int remaining_score = score - td * 6 - fg * 3 - safety * 2; // this is probably way harder than the best way, but I think I got it to eventually work well.
+                    // this stuff below i got help from a few different stack overflow threads that talked about similar types of problems. 
+                    if (remaining_score == 0) { // i used the sample of 25 to ensure i was not missing anything obvious and corrected from there.
                         printf("0 TD + 2pt, %d TD + FG, 0 TD, 0 3pt FG, %d Safety\n", td, safety);
                     }
                     else if (remaining_score == 1 && td > 0) {
